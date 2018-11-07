@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class RemovePriceFromOrders extends AbstractMigration
+class CreateContents extends AbstractMigration
 {
     /**
      * Change Method.
@@ -12,8 +12,12 @@ class RemovePriceFromOrders extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('orders');
-        $table->removeColumn('price');
-        $table->update();
+        $table = $this->table('contents');
+        $table->addColumn('title', 'string', [
+            'default' => null,
+            'limit' => 255,
+            'null' => false,
+        ]);
+        $table->create();
     }
 }

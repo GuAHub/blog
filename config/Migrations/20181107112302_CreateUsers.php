@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class CreateOrders extends AbstractMigration
+class CreateUsers extends AbstractMigration
 {
     /**
      * Change Method.
@@ -12,26 +12,23 @@ class CreateOrders extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('orders');
-        $table->addColumn('id', 'integer', [
-            'default' => null,
-            'limit' => 11,
-            'null' => false,
-        ]);
+        $table = $this->table('users');
         $table->addColumn('name', 'string', [
             'default' => null,
             'limit' => 255,
             'null' => false,
         ]);
-        $table->addColumn('order_date', 'datetime', [
+        $table->addColumn('password', 'string', [
             'default' => null,
+            'limit' => 255,
+            'null' => false,
+        ]);
+        $table->addColumn('email', 'string', [
+            'default' => null,
+            'limit' => 255,
             'null' => false,
         ]);
         $table->addColumn('created', 'datetime', [
-            'default' => null,
-            'null' => false,
-        ]);
-        $table->addColumn('modified', 'datetime', [
             'default' => null,
             'null' => false,
         ]);
