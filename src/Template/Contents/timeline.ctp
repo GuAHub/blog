@@ -4,7 +4,6 @@
  * @var \App\Model\Entity\Content[]|\Cake\Collection\CollectionInterface $contents
  */
 ?>
-
 <div class="contents index large-9 medium-8 columns content">
     <h3><?= __('Contents') ?></h3>
     <table cellpadding="0" cellspacing="0">
@@ -42,3 +41,5 @@
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>
+
+<?= $this->extend('../Layout/BlogBootstrap/dashboard'); ?>
