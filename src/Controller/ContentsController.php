@@ -88,11 +88,11 @@ class ContentsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $content = $this->Contents->patchEntity($content, $this->request->getData());
             if ($this->Contents->save($content)) {
-                $this->Flash->success(__('The content has been saved.'));
+                $this->Flash->success(__("保存に成功しました"));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'timeline']);
             }
-            $this->Flash->error(__('The content could not be saved. Please, try again.'));
+            $this->Flash->error(__('保存に失敗しました。もう一度実行してください。'));
         }
         $this->set(compact('content'));
     }
@@ -109,11 +109,11 @@ class ContentsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $content = $this->Contents->get($id);
         if ($this->Contents->delete($content)) {
-            $this->Flash->success(__('The content has been deleted.'));
+            $this->Flash->success(__('削除に成功しました。'));
         } else {
-            $this->Flash->error(__('The content could not be deleted. Please, try again.'));
+            $this->Flash->error(__('削除に失敗しました。もう一度実行してください。'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['action' => 'timeline']);
     }
 }
