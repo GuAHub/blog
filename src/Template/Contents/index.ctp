@@ -4,6 +4,8 @@
  * @var \App\Model\Entity\Content[]|\Cake\Collection\CollectionInterface $contents
  */
 ?>
+<?php $this->extend('../Layout/BlogBootstrap/dashboard'); ?>
+<?= $this->Html->css('Action'); ?>
 
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">

@@ -1,5 +1,6 @@
 <?php
 /* @var $this \Cake\View\View */
+
 use Cake\Core\Configure;
 
 $this->Html->css('BootstrapUI.dashboard', ['block' => true]);
@@ -50,7 +51,7 @@ $this->start('tb_body_start');
  * Default `flash` block.
  */
 if (!$this->fetch('tb_flash')) {
-    $this->start('tb_flash');
+    //$this->start('tb_flash');
     if (isset($this->Flash))
         echo $this->Flash->render();
     $this->end();
@@ -60,6 +61,5 @@ $this->end();
 $this->start('tb_body_end');
 echo '</body>';
 $this->end();
-
 $this->append('content', '</div></div></div>');
 echo $this->fetch('content');
