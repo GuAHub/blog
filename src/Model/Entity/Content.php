@@ -9,6 +9,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $title
  * @property string $body
+ * @property string $img
  */
 class Content extends Entity
 {
@@ -24,6 +25,7 @@ class Content extends Entity
      */
     protected $_accessible = [
         'title' => true,
-        'body' => true
+        'body' => true,
+        'img' => true
     ];
 }

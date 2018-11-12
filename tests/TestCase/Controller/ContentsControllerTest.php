@@ -30,6 +30,16 @@ class ContentsControllerTest extends IntegrationTestCase
     }
 
     /**
+     * Test timeline method
+     *
+     * @return void
+     */
+    public function testTimeline()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
      * Test view method
      *
      * @return void

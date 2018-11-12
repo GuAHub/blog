@@ -60,6 +60,11 @@ class ContentsTable extends Table
             ->requirePresence('body', 'create')
             ->notEmpty('body');
 
+        $validator
+            ->scalar('img')
+            ->requirePresence('img', 'create')
+            ->notEmpty('img');
+
         return $validator;
     }
 }
