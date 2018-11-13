@@ -61,9 +61,12 @@ class ContentsTable extends Table
             ->notEmpty('body');
 
         $validator
-            ->scalar('img')
-            ->requirePresence('img', 'create')
             ->allowEmpty('img');
+
+        $validator
+            ->scalar('category')
+            ->maxLength('category', 255)
+            ->allowEmpty('category');
 
         return $validator;
     }

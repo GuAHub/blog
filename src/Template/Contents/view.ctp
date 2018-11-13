@@ -4,8 +4,6 @@
  * @var \App\Model\Entity\Content $content
  */
 ?>
-<?php $this->extend('../Layout/BlogBootstrap/dashboard'); ?>
-<?= $this->Html->css('Action'); ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -25,6 +23,10 @@
         <tr>
             <th scope="row"><?= __('Body') ?></th>
             <td><?= h($content->body) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Category') ?></th>
+            <td><?= h($content->category) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>

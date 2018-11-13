@@ -4,15 +4,13 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Content Entity
+ * Category Entity
  *
  * @property int $id
- * @property string $title
- * @property string $body
- * @property string|resource $img
- * @property string $category
+ * @property string $name
+ * @property int $userid
  */
-class Content extends Entity
+class Category extends Entity
 {
 
     /**
@@ -25,9 +23,7 @@ class Content extends Entity
      * @var array
      */
     protected $_accessible = [
-        'title' => true,
-        'body' => true,
-        'img' => true,
-        'category' => true
+        'name' => true,
+        'userid' => true
     ];
 }
