@@ -36,11 +36,15 @@ font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ãƒ’ã
     background-color: rgb(202, 202, 202);
 }
 
-.sidebar {
+.navbar-collapse {
     box-shadow: 2px 2px 10px gray;
 }
 
 .panel-default{
     box-shadow: 2px 2px 6px gray;
-    width: 70%;
+    width: 100%;
+}
+
+.panelimg {
+    text-align: center;
 }

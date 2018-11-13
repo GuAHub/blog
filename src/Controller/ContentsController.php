@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use JsonSchema\Uri\Retrievers\FileGetContents;
 
 /**
  * Contents Controller
@@ -62,12 +63,25 @@ class ContentsController extends AppController
     {
         $content = $this->Contents->newEntity();
         if ($this->request->is('post')) {
-            $content = $this->Contents->patchEntity($content, $this->request->getData());
+
+            $get_data = $this->request->getData();
+
+            $file['size'] = $get_data['img']['size'];
+
+            if($file['size'] > 0){
+                $file['tmp_name'] = $get_data['img']['tmp_name'];
+                $file['data'] = base64_encode(file_get_contents($file['tmp_name']));
+                $content = $this->Contents->patchEntity($content, ['title' => $get_data['title'], 'body' => $get_data['body'], 'img' => $file['data']]);
+            }else{
+                $content = $this->Contents->patchEntity($content, ['title' => $get_data['title'], 'body' => $get_data['body'], 'img' =>""]);
+            }
+
             if ($this->Contents->save($content)) {
                 $this->Flash->success(__('作成に成功しました。'));
 
                 return $this->redirect(['action' => 'timeline']);
             }
+            //debug(base64_encode(file_get_contents($this->request->data['img']['tmp_name'])));
             $this->Flash->error(__('保存に失敗しました。もう一度実行してください。'));
         }
         $this->set(compact('content'));
@@ -116,4 +130,5 @@ class ContentsController extends AppController
 
         return $this->redirect(['action' => 'timeline']);
     }
+
 }

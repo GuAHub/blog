@@ -10,7 +10,7 @@
 
 <?= $this->element('myaccount'); ?>
 
-<nav class="sidebar" id="actions-sidebar">
+<nav class="navbar-collapse sidebar" id="actions-sidebar">
     <ul class="side-nav">
         <?= __('操作') ?>
         <li><?= $this->Html->link(__('ホーム'), ['action' => 'index']) ?></li>
@@ -24,6 +24,17 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><?= h($content->title) ?></div>
                 <div class="panel-body"><?= nl2br(h($content->body)) ?></div>
+
+                <div class="panelimg">
+                    <?php
+                    //ここcontrollerでやる
+                    $xx = stream_get_contents($content->img);
+                    if(mb_strlen($xx) > 0 ){
+                        echo "<img width='90%' src='data:image/png;base64," . $xx . "'>";
+                    }
+                    ?>
+                </div>
+
                 <div class="ContentAction">
                     <?= $this->Html->link(__('詳細'), ['action' => 'view', $content->id]) ?>
                     <?= $this->Html->link(__('編集'), ['action' => 'edit', $content->id]) ?>

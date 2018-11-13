@@ -63,7 +63,7 @@ class ContentsTable extends Table
         $validator
             ->scalar('img')
             ->requirePresence('img', 'create')
-            ->notEmpty('img');
+            ->allowEmpty('img');
 
         return $validator;
     }
