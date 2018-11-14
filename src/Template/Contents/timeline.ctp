@@ -12,7 +12,7 @@
 
 <nav class="navbar-collapse sidebar" id="actions-sidebar">
     <ul class="side-nav">
-        <?= __('操作') ?>
+        <?= $username . "さん" ?>
         <li><?= $this->Html->link(__('ホーム'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('新規作成'), ['action' => 'add']) ?></li>
     </ul>
@@ -36,9 +36,9 @@
                 </div>
 
                 <div class="ContentAction">
-                    <?= $this->Html->link(__('詳細'), ['action' => 'view', $content->id]) ?>
+                    <?= $this->Html->link(__('詳細'), ['action' => 'view', $content->id],['id'=>'view']) ?>
                     <?= $this->Html->link(__('編集'), ['action' => 'edit', $content->id]) ?>
-                    <?= $this->Form->postLink(__('削除'), ['action' => 'delete', $content->id], ['confirm' => __( "消しちゃいますよ...?", $content->id)]) ?>
+                    <?= $this->Form->postLink(__('削除'), ['action' => 'delete', $content->id], ['confirm' => __("消しちゃいますよ...?", $content->id)]) ?>
                 </div>
             </div>
         <?php endforeach; ?>

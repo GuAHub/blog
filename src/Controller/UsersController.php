@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -12,6 +13,41 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+
+    /**
+     * 認証スルー設定
+     * @param Event $event
+     * @return \Cake\Http\Response|null|void
+     */
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['add']);
+    }
+
+    /**
+     * ログイン
+     * @return \Cake\Http\Response|null
+     */
+    public function login()
+    {
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error(__('ユーザ名もしくはパスワードが間違っています'));
+        }
+    }
+
+    /**
+     * ログアウト
+     * @return \Cake\Http\Response|null
+     */
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
 
     /**
      * Index method
@@ -50,7 +86,10 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
+
+            $get_data = $this->request->getData();
+
+            $user = $this->Users->patchEntity($user, $get_data);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 

@@ -54,7 +54,7 @@ class UsersTable extends Table
 
         $validator
             ->scalar('name')
-            ->maxLength('name', 255)
+            ->maxLength('name', 30)
             ->requirePresence('name', 'create')
             ->notEmpty('name');
 
@@ -66,13 +66,13 @@ class UsersTable extends Table
 
         $validator
             ->email('email')
+            ->maxLength('email', 50)
             ->requirePresence('email', 'create')
             ->notEmpty('email');
 
         $validator
             ->integer('role')
-            ->requirePresence('role', 'create')
-            ->notEmpty('role');
+            ->allowEmpty('role');
 
         return $validator;
     }

@@ -34,8 +34,9 @@ class ContentsController extends AppController
     public function timeline()
     {
         $contents = $this->paginate($this->Contents);
+        $username = $this->Auth->user('name');
 
-        $this->set(compact('contents'));
+        $this->set(compact('contents','username'));
     }
 
     /**

@@ -42,9 +42,13 @@ font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ãƒ’ã
 
 .panel-default{
     box-shadow: 2px 2px 6px gray;
-    width: 100%;
+    width: 80%;
 }
 
-.panelimg {
-    text-align: center;
+.panel-default:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
 }
