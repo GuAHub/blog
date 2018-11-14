@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="ContentAction">
-                    <?= $this->Html->link(__('詳細'), ['action' => 'view', $content->id],['id'=>'view']) ?>
+                    <?= $this->Html->link(__('詳細'), ['action' => 'view', $content->id]) ?>
                     <?= $this->Html->link(__('編集'), ['action' => 'edit', $content->id]) ?>
                     <?= $this->Form->postLink(__('削除'), ['action' => 'delete', $content->id], ['confirm' => __("消しちゃいますよ...?", $content->id)]) ?>
                 </div>

@@ -9,6 +9,8 @@
 <?php $this->extend('../Layout/BlogBootstrap/signin') ?>
 <?= $this->Html->css('Action') ?>
 
+<a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']) ?>">ログインページ</a>
+
 <div class="users form large-9 medium-8 columns content">
     <?= $this->Form->create($user) ?>
     <fieldset>
@@ -21,5 +23,4 @@
     </fieldset>
     <?= $this->Form->button(__('作成')) ?>
     <?= $this->Form->end() ?>
-    <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']) ?>">ログインページ</a>
 </div>
