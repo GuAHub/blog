@@ -4,22 +4,22 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
+
+
+<?php $this->extend('../Layout/BlogBootstrap/signin') ?>
+<?= $this->Html->css('Action') ?>
+
 <div class="users form large-9 medium-8 columns content">
     <?= $this->Form->create($user) ?>
     <fieldset>
-        <legend><?= __('Add User') ?></legend>
+        <legend><?= __('新規アカウント作成') ?></legend>
         <?php
-            echo $this->Form->control('name');
-            echo $this->Form->control('password');
-            echo $this->Form->control('email');
+            echo $this->Form->control('name',['label'=>'名前']);
+            echo $this->Form->control('email', ['label' => 'メールアドレス']);
+            echo $this->Form->control('password', ['label' => 'パスワード']);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('作成')) ?>
     <?= $this->Form->end() ?>
+    <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']) ?>">ログインページ</a>
 </div>

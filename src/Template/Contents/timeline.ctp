@@ -12,7 +12,8 @@
 
 <nav class="navbar-collapse sidebar" id="actions-sidebar">
     <ul class="side-nav">
-        <?= $username . "さん" ?>
+        <?= "ようこそ" . $username . "さん" ?>
+        <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'logout']) ?>">ログアウト</a></li>
         <li><?= $this->Html->link(__('ホーム'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('新規作成'), ['action' => 'add']) ?></li>
     </ul>
