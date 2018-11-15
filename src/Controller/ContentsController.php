@@ -33,8 +33,26 @@ class ContentsController extends AppController
      */
     public function timeline()
     {
-        $contents = $this->paginate($this->Contents);
+        $jointable = $this->Contents->find()
+            ->join([
+                'table' => 'users',
+                'alias' => 'u',
+                'type' => 'INNER',
+                'conditions' => 'u.id = contents.userid',
+            ])->select([
+                'id' => 'Contents.id',
+                'title' => 'Contents.title',
+                'body' => 'Contents.body',
+                'img' => 'Contents.img',
+                'category' => 'Contents.category',
+                'postname' => 'u.name',
+                'created' => 'Contents.created',
+            ]);
+
+        $contents = $this->paginate($jointable);
         $username = $this->Auth->user('name');
+
+        //debug($contents);
 
         $this->set(compact('contents','username'));
     }

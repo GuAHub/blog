@@ -5,7 +5,7 @@
  */
 ?>
 
-<?php $this->extend('../Layout/BlogBootstrap/dashboard'); ?>
+<?php //$this->extend('../Layout/BlogBootstrap/dashboard'); ?>
 <?= $this->Html->css('Action'); ?>
 
 <?= $this->element('myaccount'); ?>
@@ -23,6 +23,7 @@
 
         <?php foreach ($contents as $content): ?>
             <div class="panel panel-default">
+                <?= $content->postname . "さんの投稿" ?>
                 <div class="panel-heading"><?= h($content->title) ?></div>
                 <div class="panel-body"><?= nl2br(h($content->body)) ?></div>
 
