@@ -17,6 +17,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Content patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Content[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Content findOrCreate($search, callable $callback = null, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ContentsTable extends Table
 {
@@ -34,6 +36,8 @@ class ContentsTable extends Table
         $this->setTable('contents');
         $this->setDisplayField('title');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
     }
 
     /**
@@ -67,6 +71,11 @@ class ContentsTable extends Table
             ->scalar('category')
             ->maxLength('category', 255)
             ->allowEmpty('category');
+
+        $validator
+            ->integer('userid')
+            ->requirePresence('userid', 'create')
+            ->notEmpty('userid');
 
         return $validator;
     }

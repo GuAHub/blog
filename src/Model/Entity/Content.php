@@ -11,6 +11,8 @@ use Cake\ORM\Entity;
  * @property string $body
  * @property string|resource $img
  * @property string $category
+ * @property int $userid
+ * @property \Cake\I18n\FrozenTime $created
  */
 class Content extends Entity
 {
@@ -28,6 +30,8 @@ class Content extends Entity
         'title' => true,
         'body' => true,
         'img' => true,
-        'category' => true
+        'category' => true,
+        'userid' => true,
+        'created' => true
     ];
 }

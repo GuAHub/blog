@@ -67,22 +67,25 @@ class ContentsController extends AppController
 
             $get_data = $this->request->getData();
 
+            debug($this->request->getData());
+
+            $userid = $this->Auth->user('id');
+
             $file['size'] = $get_data['img']['size'];
 
-            if($file['size'] > 0){
-                $file['tmp_name'] = $get_data['img']['tmp_name'];
-                $file['data'] = base64_encode(file_get_contents($file['tmp_name']));
-                $content = $this->Contents->patchEntity($content, ['title' => $get_data['title'], 'body' => $get_data['body'], 'img' => $file['data']]);
-            }else{
-                $content = $this->Contents->patchEntity($content, ['title' => $get_data['title'], 'body' => $get_data['body'], 'img' =>""]);
-            }
+                $content = $this->Contents->patchEntity($content,
+                    ['title' => $get_data['title'],
+                    'body' => $get_data['body'],
+                    'img' => parent::img_64encode($get_data['img']['tmp_name']),
+                    'userid' => $userid,
+                    'category' => $get_data['category']
+                ]);
 
             if ($this->Contents->save($content)) {
                 $this->Flash->success(__('作成に成功しました。'));
 
                 return $this->redirect(['action' => 'timeline']);
             }
-            //debug(base64_encode(file_get_contents($this->request->data['img']['tmp_name'])));
             $this->Flash->error(__('保存に失敗しました。もう一度実行してください。'));
         }
         $this->set(compact('content'));

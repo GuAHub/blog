@@ -74,4 +74,15 @@ class AppController extends Controller
         //$this->loadComponent('Security');
     }
 
+    public function img_64encode($getimg)
+    {
+        $tmpimg = base64_encode(file_get_contents($getimg));
+        debug(mb_strlen($tmpimg));
+        if (mb_strlen($tmpimg) > 0) {
+            return $tmpimg;
+        } else {
+            return "";
+        }
+    }
+
 }

@@ -74,6 +74,20 @@ class UsersTable extends Table
             ->integer('role')
             ->allowEmpty('role');
 
+        $validator
+            ->allowEmpty('icon');
+
+        $validator
+            ->allowEmpty('header');
+
+        $validator
+            ->scalar('color')
+            ->maxLength('color', 30)
+            ->allowEmpty('color');
+
+        $validator
+            ->allowEmpty('backicon');
+
         return $validator;
     }
 

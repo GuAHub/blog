@@ -99,6 +99,24 @@ class UsersController extends AppController
         $this->set(compact('user'));
     }
 
+    public function profileEdit()
+    {
+        $userid = $this->Auth->user('id');
+        $user = $this->Users->get($userid, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+        }
+        $this->set(compact('user'));
+    }
+
     /**
      * Edit method
      *

@@ -22,6 +22,8 @@ class ContentsFixture extends TestFixture
         'body' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'img' => ['type' => 'binary', 'length' => 4294967295, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'category' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'userid' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'created' => ['type' => 'timestamp', 'length' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => '', 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -45,7 +47,9 @@ class ContentsFixture extends TestFixture
                 'title' => 'Lorem ipsum dolor sit amet',
                 'body' => 'Lorem ipsum dolor sit amet',
                 'img' => 'Lorem ipsum dolor sit amet',
-                'category' => 'Lorem ipsum dolor sit amet'
+                'category' => 'Lorem ipsum dolor sit amet',
+                'userid' => 1,
+                'created' => 1542278745
             ],
         ];
         parent::init();

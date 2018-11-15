@@ -11,12 +11,13 @@
     </ul>
 </nav>
 <div class="contents form large-9 medium-8 columns content">
-    <?= $this->Form->create($content) ?>
+    <?= $this->Form->create($content, ['type' => 'file']) ?>
     <fieldset>
         <legend><?= __('Add Content') ?></legend>
         <?php
             echo $this->Form->control('title');
             echo $this->Form->control('body');
+            echo $this->Form->control('img',['type' => 'file']);
             echo $this->Form->control('category');
         ?>
     </fieldset>
