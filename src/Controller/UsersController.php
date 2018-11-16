@@ -127,6 +127,18 @@ class UsersController extends AppController
         $this->set(compact('user'));
     }
 
+    //mypage method
+    public function mypage()
+    {
+        $userid = $this->Auth->user('id');
+        $user = $this->Users->get($userid, [
+            'contain' => []
+        ]);
+
+        $myicon = parent::display_img($user->icon,"50%","50%");
+        $this->set(compact('user','myicon'));
+    }
+
     /**
      * Edit method
      *

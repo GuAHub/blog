@@ -14,7 +14,6 @@ use JsonSchema\Uri\Retrievers\FileGetContents;
  */
 class ContentsController extends AppController
 {
-     // 以下の「initialize()」を追加します。
     public function initialize()
     {
         parent::initialize();

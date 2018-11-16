@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Content[]|\Cake\Collection\CollectionInterface $contents
@@ -14,17 +15,17 @@
     <ul class="side-nav">
         <?= $myicon ?>
         <?= "ようこそ" . $myname . "さん" ?>
-        <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'mypage']) ?>">マイページ</a></li>
-        <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'logout']) ?>">ログアウト</a></li>
-        <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'profile_edit']) ?>">プロフィール編集</a></li>
+        <li><a href="<?= $this->Url->build(['controller' => 'mypage']) ?>">マイページ</a></li>
+        <li><a href="<?= $this->Url->build(['controller' => 'logout']) ?>">ログアウト</a></li>
+        <li><a href="<?= $this->Url->build(['controller' => 'ProfileEdit']) ?>">プロフィール編集</a></li>
         <li><?= $this->Html->link(__('ホーム'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('新規作成'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('新規作成'), ['controller' => 'NewContent']) ?></li>
     </ul>
 </nav>
 
 <div class="contents index large-9 medium-8 columns content">
 
-        <?php foreach ($contents as $content): ?>
+        <?php foreach ($contents as $content) : ?>
             <div class="panel panel-default">
                 <?= $content->postname . "さんの投稿" ?>
                 <div class="panel-heading"><?= h($content->title) ?></div>
@@ -34,11 +35,13 @@
                     <?php
                     //ここcontrollerでやる
                     $xx = stream_get_contents($content->img);
-                    if(mb_strlen($xx) > 0 ){
+                    if (mb_strlen($xx) > 0) {
                         echo "<img width='90%' src='data:image/png;base64," . $xx . "'>";
                     }
                     ?>
                 </div>
+
+                <div><?= $content->created ?></div>
 
                 <div class="ContentAction">
                     <?= $this->Html->link(__('詳細'), ['action' => 'view', $content->id]) ?>
