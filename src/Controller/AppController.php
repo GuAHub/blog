@@ -76,10 +76,8 @@ class AppController extends Controller
 
     public function img_64encode($getimg)
     {
-        $tmpimg = base64_encode(file_get_contents($getimg));
-        debug(mb_strlen($tmpimg));
-        if (mb_strlen($tmpimg) > 0) {
-            return $tmpimg;
+        if ($getimg['size'] > 0) {
+            return base64_encode(file_get_contents($getimg['tmp_name']));
         } else {
             return "";
         }

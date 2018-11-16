@@ -102,28 +102,25 @@ class UsersController extends AppController
     public function profileEdit()
     {
         $userid = $this->Auth->user('id');
-        $data = $this->request->getData();
-        $profile = [
-            'name' => '',
-            'iocn' => parent::img_64encode($data['']),
-            'header' => parent::img_64encode($data['']),
-            'color' => $data['icon'],
-            'backicon' => parent::img_64encode($data['']),
-            'iocn' => parent::img_64encode($data['']),
-            //ここでセーブ前に画像たちのゆうむをかくにんして６４にして保存
-
-
-        ];
-
         $user = $this->Users->get($userid, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, );
+            $data = $this->request->getData();
+            debug($data);
+            $profile = [
+                'name' => $data['name'],
+                'icon' => parent::img_64encode($data['icon']),
+                'header' => parent::img_64encode($data['header']),
+                'color' => $data['color'],
+                'backicon' => parent::img_64encode($data['backicon']),
+            ];
+
+            $user = $this->Users->patchEntity($user, $profile);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
-                return $this->redirect(['action' => 'timeline']);
+                return $this->redirect(['controller' => 'Contents','action' => 'timeline']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }

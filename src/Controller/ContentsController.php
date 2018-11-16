@@ -117,7 +117,7 @@ class ContentsController extends AppController
                 $content = $this->Contents->patchEntity($content,
                     ['title' => $get_data['title'],
                     'body' => $get_data['body'],
-                    'img' => parent::img_64encode($get_data['img']['tmp_name']),
+                    'img' => parent::img_64encode($get_data['img']),
                     'userid' => $userid,
                     'category' => $get_data['category']
                 ]);
