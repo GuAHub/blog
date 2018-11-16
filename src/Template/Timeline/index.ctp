@@ -6,10 +6,8 @@
  */
 ?>
 
-<?php //$this->extend('../Layout/BlogBootstrap/dashboard'); ?>
+<?php $this->extend('../Layout/BlogBootstrap/dashboard'); ?>
 <?= $this->Html->css('Action'); ?>
-
-<?= $this->element('myaccount'); ?>
 
 <nav class="navbar-collapse sidebar" id="actions-sidebar">
     <ul class="side-nav">
@@ -18,8 +16,7 @@
         <li><a href="<?= $this->Url->build(['controller' => 'mypage']) ?>">マイページ</a></li>
         <li><a href="<?= $this->Url->build(['controller' => 'logout']) ?>">ログアウト</a></li>
         <li><a href="<?= $this->Url->build(['controller' => 'ProfileEdit']) ?>">プロフィール編集</a></li>
-        <li><?= $this->Html->link(__('ホーム'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('新規作成'), ['controller' => 'NewContent']) ?></li>
+        <li><?= $this->Html->link(__('ツイット'), ['controller' => 'NewContent']) ?></li>
     </ul>
 </nav>
 
@@ -27,25 +24,17 @@
 
         <?php foreach ($contents as $content) : ?>
             <div class="panel panel-default">
-                <?= $content->postname . "さんの投稿" ?>
+                <?= $content->posticon . $content->postname . "さんの投稿" ?>
                 <div class="panel-heading"><?= h($content->title) ?></div>
                 <div class="panel-body"><?= nl2br(h($content->body)) ?></div>
 
-                <div class="panelimg">
-                    <?php
-                    //ここcontrollerでやる
-                    $xx = stream_get_contents($content->img);
-                    if (mb_strlen($xx) > 0) {
-                        echo "<img width='90%' src='data:image/png;base64," . $xx . "'>";
-                    }
-                    ?>
-                </div>
+                <div class="panelimg"><?= $content->icon ?></div>
 
                 <div><?= $content->created ?></div>
-
+                <div><?= $content->img ?></div>
                 <div class="ContentAction">
-                    <?= $this->Html->link(__('詳細'), ['action' => 'view', $content->id]) ?>
-                    <?= $this->Html->link(__('編集'), ['action' => 'edit', $content->id]) ?>
+                    <?= $this->Html->link(__('詳細'), ['controller' => 'view', $content->id]) ?>
+                    <?= $this->Html->link(__('編集'), ['controller' => 'edit', $content->id]) ?>
                     <?= $this->Form->postLink(__('削除'), ['action' => 'delete', $content->id], ['confirm' => __("消しちゃいますよ...?", $content->id)]) ?>
                 </div>
             </div>

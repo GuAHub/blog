@@ -17,7 +17,7 @@
         <legend><?= __('Add Content') ?></legend>
         <?php
         echo $this->Form->control('title');
-        echo $this->Form->control('body');
+        echo $this->Form->control('body',['type'=>'textarea','rows'=>'10']);
         echo $this->Form->control('img', ['type' => 'file']);
         echo $this->Form->control('category');
         ?>

@@ -25,18 +25,18 @@ class ProfileEditController extends AppController
 
             $user = $this->Users->patchEntity($user, $profile);
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('プロフィールを変更しました'));
 
                 return $this->redirect(['controller' => 'timeline']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('保存に失敗しました。もう一度実行してください'));
         }
         $this->set(compact('user'));
     }
 
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->request->allowMethod('delete');
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {
             $this->Flash->success(__('削除に成功しました。'));

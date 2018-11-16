@@ -6,7 +6,7 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['controller'=>'Delete','action' => 'withdrawal', $user->id],
+                ['action' => 'delete', $user->id],
                 ['confirm' => __('{0}さんのアカウントを削除しますか？', $user->name)]
             )
             ?></li>

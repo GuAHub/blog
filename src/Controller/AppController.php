@@ -55,6 +55,8 @@ class AppController extends Controller
     {
         if(is_null($myicon)){
             return "";
+        }elseif(is_string($myicon)){
+            return "<img width='" . $width . "' height='" . $height . "' src='data:image/png;base64," . $myicon . "'>";
         }
         $myiconsource = stream_get_contents($myicon);
         if (mb_strlen($myiconsource) > 0) {
