@@ -12,8 +12,10 @@
 
 <nav class="navbar-collapse sidebar" id="actions-sidebar">
     <ul class="side-nav">
-        <?= "ようこそ" . $username . "さん" ?>
+        <?= $myicon ?>
+        <?= "ようこそ" . $myname . "さん" ?>
         <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'logout']) ?>">ログアウト</a></li>
+        <li><a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'profile_edit']) ?>">プロフィール編集</a></li>
         <li><?= $this->Html->link(__('ホーム'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('新規作成'), ['action' => 'add']) ?></li>
     </ul>

@@ -22,9 +22,11 @@
         <legend><?= __('Edit User') ?></legend>
         <?php
             echo $this->Form->control('name');
-            echo $this->Form->control('password');
-            echo $this->Form->control('email');
-            echo $this->Form->control('role');
+            echo $this->Form->control('icon', ['type' => 'file']);
+            echo $this->Form->control('header', ['type' => 'file']);
+            echo $this->Form->control('color');
+            echo $this->Form->control('backimg', ['type' => 'file']);
+
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

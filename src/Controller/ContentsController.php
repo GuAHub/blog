@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 use JsonSchema\Uri\Retrievers\FileGetContents;
 
 /**
@@ -13,6 +14,12 @@ use JsonSchema\Uri\Retrievers\FileGetContents;
  */
 class ContentsController extends AppController
 {
+     // 以下の「initialize()」を追加します。
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Users = TableRegistry::get("users");
+    }
 
     /**
      * Index method
@@ -33,6 +40,7 @@ class ContentsController extends AppController
      */
     public function timeline()
     {
+
         $jointable = $this->Contents->find()
             ->join([
                 'table' => 'users',
@@ -46,15 +54,32 @@ class ContentsController extends AppController
                 'img' => 'Contents.img',
                 'category' => 'Contents.category',
                 'postname' => 'u.name',
+                'posticon' => 'u.icon',
                 'created' => 'Contents.created',
             ]);
 
         $contents = $this->paginate($jointable);
-        $username = $this->Auth->user('name');
 
-        //debug($contents);
+        $myaccount = $this->Auth->user();
+        $myname = $myaccount['name'];
 
-        $this->set(compact('contents','username'));
+        $myid = $myaccount['id'];
+        $myicon = $this->Users->find()
+            ->select([
+                'icon' => 'users.icon',
+            ])->where([
+                'id' => $myid,
+            ])->first()
+            ->icon;
+
+        $myiconsource = stream_get_contents($myicon);
+        if (mb_strlen($myiconsource) > 0) {
+            $myicon = "<img width='30px' height'30px' src='data:image/png;base64," . $myiconsource . "'>";
+        }else{
+            $myicon = "";
+        }
+
+        $this->set(compact('contents','myname','myicon'));
     }
 
     /**
@@ -84,8 +109,6 @@ class ContentsController extends AppController
         if ($this->request->is('post')) {
 
             $get_data = $this->request->getData();
-
-            debug($this->request->getData());
 
             $userid = $this->Auth->user('id');
 

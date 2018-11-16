@@ -13,7 +13,7 @@ class AddNameToUsers extends AbstractMigration
     public function change()
     {
         $table = $this->table('users');
-        $table->addColumn('iocn', 'string', [
+        $table->addColumn('icon', 'string', [
             'default' => null,
             'limit' => 255,
             'null' => false,

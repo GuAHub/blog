@@ -22,6 +22,7 @@
     <fieldset>
         <legend><?= __('Edit User') ?></legend>
         <?php
+        echo $this->Form->control('name');
         echo $this->Form->control('icon',['type'=>'file']);
         echo $this->Form->control('header', ['type' => 'file']);
         echo $this->Form->control('color', ['type' => 'text']);
