@@ -17,7 +17,7 @@ class LoginController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+                return $this->redirect($this->Auth->redirectUrl(['controller' => 'timeline']));
             }
             $this->Flash->error(__('ユーザ名もしくはパスワードが間違っています'));
         }
