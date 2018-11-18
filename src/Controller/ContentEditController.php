@@ -8,13 +8,17 @@ class ContentEditController extends AppController
 
     public function index($id = null)
     {
+        $get_data = $this->request->getData();
+        $userid = $this->Auth->user('id');
+
         $content = $this->Contents->get($id, [
             'contain' => []
         ]);
+        if ($this->Auth->user('id') <> $content->userid) {
+            $this->Flash->success(__("このページにはアクセスできません。"));
+            return $this->redirect(['controller' => 'timeline']);
+        }
         if ($this->request->is(['patch', 'post', 'put'])) {
-
-            $get_data = $this->request->getData();
-            $userid = $this->Auth->user('id');
 
             $content = $this->Contents->patchEntity(
                 $content,

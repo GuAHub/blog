@@ -11,8 +11,10 @@ class ContentViewController extends AppController
             'contain' => []
         ]);
 
+        $Authid = $this->Auth->user(['id']);
+
         $img = parent::display_img($content->img, "80%", "");
 
-        $this->set(compact('content', 'img'));
+        $this->set(compact('content', 'img','aciton','Authid'));
     }
 }
