@@ -6,6 +6,7 @@ use App\Controller\AppController;
 class ContentEditController extends AppController
 {
 
+
     public function index($id = null)
     {
         $get_data = $this->request->getData();
@@ -44,6 +45,13 @@ class ContentEditController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $content = $this->Contents->get($id);
+
+        $userid = $this->Auth->user('id');
+        if ($this->Auth->user('id') <> $content->userid) {
+            $this->Flash->success(__("このページにはアクセスできません。"));
+            return $this->redirect(['controller' => 'timeline']);
+        }
+
         if ($this->Contents->delete($content)) {
             $this->Flash->success(__('削除に成功しました。'));
         } else {
