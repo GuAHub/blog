@@ -4,21 +4,18 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 
-/**
- * Mypage Controller
- *
- * @property \App\Model\Table\UsersTable $Users
- * @property \App\Model\Table\ContentsTable $Contents
- *
-**/
 
-class MypageController extends AppController
+
+class UserPageController extends AppController
 {
 
         //index method
-    public function index()
+    public function index($userid)
     {
-        $userid = $this->Auth->user('id');
+
+        if($userid == $this->Auth->user(['id'])){
+            return $this->redirect($this->Auth->redirectUrl(['controller' => 'Mypage']));
+        }
         $user = $this->Users->get($userid, [
             'contain' => []
         ]);
@@ -36,6 +33,7 @@ class MypageController extends AppController
                 'img' => 'Contents.img',
                 'category' => 'Contents.category',
                 'postname' => 'u.name',
+                'posticon' => 'u.icon',
                 'created' => 'Contents.created',
             ])->where(['u.id' => $userid]);
 
@@ -43,14 +41,11 @@ class MypageController extends AppController
         $contents = $this->paginate($jointable);
 
         foreach ($contents as $content) {
-            $content->img = parent::display_img($content->img, "90%", "");
-
+            $content->img = parent::display_img($content->img, "90%", "90%");
         }
 
-        $myicon = parent::display_img($user->icon, "30%", "");
-        $myheader = parent::display_img($user->header, "100%", "");
-        $mybackicon = parent::display_img($user->backicon, "50%", "");
-        $this->set(compact('user', 'myicon','myheader','mybackicon','contents'));
+        $myicon = parent::display_img($user->icon, "50%", "50%");
+        $this->set(compact('user', 'myicon', 'contents'));
     }
 
 }

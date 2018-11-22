@@ -23,6 +23,7 @@ class TimelineController extends AppController
                 'category' => 'Contents.category',
                 'postname' => 'u.name',
                 'posticon' => 'u.icon',
+                'postid' => 'u.id',
                 'created' => 'Contents.created',
             ]);
 
@@ -42,12 +43,11 @@ class TimelineController extends AppController
             ])->first();
 
             $myname = $user_data->name;
-            $myicon = parent::display_img($user_data->icon,"20px","20px");
+            $myicon = parent::display_img($user_data->icon,"20px","");
 
         foreach($contents as $content){
-            $content->img = parent::display_img($content->img, "90%", "90%");
-            $content->posticon = parent::display_img($content->posticon, "40px", "40px");
-
+            $content->img = parent::display_img($content->img, "90%", "");
+            $content->posticon = parent::display_img($content->posticon, "", "40px");
         }
         $this->set(compact('contents', 'myname', 'myicon'));
     }

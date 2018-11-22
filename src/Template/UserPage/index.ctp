@@ -1,33 +1,23 @@
-
 <?php $this->extend('../Layout/BlogBootstrap/dashboard'); ?>
 <?= $this->Html->css('Action'); ?>
 
-<nav class="navbar-collapse sidebar" id="actions-sidebar">
-    <ul class="side-nav">
-        <?= $myicon ?>
-        <?= "ようこそ" . $myname . "さん" ?>
-        <li><button>未来へ行く<button></li>
-        <li><a href="<?= $this->Url->build(['controller' => 'mypage']) ?>">マイページ</a></li>
-        <li><a href="<?= $this->Url->build(['controller' => 'logout']) ?>">ログアウト</a></li>
-        <li><?= $this->Html->link(__('ツイー○'), ['controller' => 'NewContent']) ?></li>
-    </ul>
-</nav>
 
+<div>名前：<?= $user->name ?></div>
+<div><?= $myicon ?></div>
+<ul>
+<li><?= $this->Html->link(__('タイムライン'), ['controller' => 'timeline']) ?></li>
+</ul>
 <div class="contents index large-9 medium-8 columns content">
 
         <?php foreach ($contents as $content) : ?>
             <div class="panel panel-default">
-                <a href="<?= $this->Url->build(['controller' => 'UserPage',$content->postid]) ?>">
-                <?= $content->posticon . $content->postname . "さんの投稿" ?></a>
                 <div class="panel-heading"><?= $this->Html->link(__(h($content->title)), ['controller' => 'ContentView', $content->id]) ?></div>
                 <div class="panel-body"><?= nl2br(h($content->body)) ?></div>
-
                 <div class="panelimg"><?= $content->icon ?></div>
                 <div><?= $content->img ?></div>
                 <div><?= $content->created ?></div>
             </div>
-        <?php endforeach; ?>
-
+        <?php endforeach ?>
 
     <div class="paginator">
         <ul class="pagination">
@@ -40,3 +30,5 @@
         <p><?= $this->Paginator->counter(['format' => __('{{page}}/{{pages}}ページ　全{{count}}件')]) ?></p>
     </div>
 </div>
+
+

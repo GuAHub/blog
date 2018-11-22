@@ -14,20 +14,29 @@ class ProfileEditController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->getData();
-            debug($data);
+
             $profile = [
                 'name' => $data['name'],
-                'icon' => parent::img_64encode($data['icon']),
-                'header' => parent::img_64encode($data['header']),
                 'color' => $data['color'],
-                'backicon' => parent::img_64encode($data['backicon']),
             ];
+
+                if($data['icon']['size'] > 0){
+                    $profile['icon'] = parent::img_64encode($data['icon']);
+                }
+
+                if($data['header']['size'] > 0){
+                    $profile['header'] = parent::img_64encode($data['header']);
+                }
+
+                if($data['backicon']['size'] > 0){
+                    $profile['backicon'] = parent::img_64encode($data['backicon']);
+                }
 
             $user = $this->Users->patchEntity($user, $profile);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('プロフィールを変更しました'));
 
-                return $this->redirect(['controller' => 'timeline']);
+                return $this->redirect(['controller' => 'Mypage']);
             }
             $this->Flash->error(__('保存に失敗しました。もう一度実行してください'));
         }

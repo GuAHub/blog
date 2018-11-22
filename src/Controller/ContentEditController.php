@@ -21,19 +21,21 @@ class ContentEditController extends AppController
         }
         if ($this->request->is(['patch', 'post', 'put'])) {
 
-            $content = $this->Contents->patchEntity(
-                $content,
-                [
-                    'title' => $get_data['title'],
-                    'body' => $get_data['body'],
-                    'img' => parent::img_64encode($get_data['img']),
-                    'userid' => $userid,
-                    'category' => $get_data['category']
-                ]
-            );
+            $contentdata = [
+                'title' => $get_data['title'],
+                'body' => $get_data['body'],
+                'userid' => $userid,
+                'category' => $get_data['category']
+            ];
+
+            if($get_data['img']['size'] > 0){
+                $contentdata['img']= parent::img_64encode($get_data['img']);
+            }
+
+            $this->Contents->patchEntity($content, $contentdata);
+
             if ($this->Contents->save($content)) {
                 $this->Flash->success(__("保存に成功しました"));
-
                 return $this->redirect(['controller' => 'timeline']);
             }
             $this->Flash->error(__('保存に失敗しました。もう一度実行してください。'));

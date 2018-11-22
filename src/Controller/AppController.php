@@ -13,7 +13,6 @@ class AppController extends Controller
     {
         parent::initialize();
 
-
         $this->Users = TableRegistry::get("users");
         $this->Contents = TableRegistry::get("contents");
 
