@@ -60,7 +60,8 @@ class UsersTable extends Table
 
         $validator
             ->scalar('password')
-            ->maxLength('password', 255)
+            ->maxLength('password', 255,'パスワードが長すぎます。')
+            ->minLength('password', 6, 'パスワードは6文字以上に設定してください。')
             ->requirePresence('password', 'create')
             ->notEmpty('password');
 

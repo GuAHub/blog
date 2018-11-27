@@ -1,16 +1,20 @@
 
-<?php $this->extend('../Layout/BlogBootstrap/dashboard'); ?>
+<?php //$this->extend('../Layout/BlogBootstrap/dashboard'); ?>
 <?= $this->Html->css('Action'); ?>
 
 <nav class="navbar-collapse sidebar" id="actions-sidebar">
-    <ul class="side-nav">
-        <?= $myicon ?>
-        <?= "ようこそ" . $myname . "さん" ?>
-        <li><button>未来へ行く<button></li>
-        <li><a href="<?= $this->Url->build(['controller' => 'mypage']) ?>">マイページ</a></li>
-        <li><a href="<?= $this->Url->build(['controller' => 'logout']) ?>">ログアウト</a></li>
-        <li><?= $this->Html->link(__('ツイー○'), ['controller' => 'NewContent']) ?></li>
-    </ul>
+    <div id="nav">
+        <ul class="side-nav">
+            <li>
+                <a href="<?= $this->Url->build(['controller' => 'mypage']) ?>">
+                    <span class="usericon"><?= $myicon ?></span>
+                    <span><?= "ようこそ" . $myname . "さん" ?></span>
+                </a>
+            </li>
+            <li><a href="<?= $this->Url->build(['controller' => 'logout']) ?>">ログアウト</a></li>
+            <li><?= $this->Html->link(__('ツイー○'), ['controller' => 'NewContent']) ?></li>
+        </ul>
+    </div>
 </nav>
 
 <div class="contents index large-9 medium-8 columns content">
@@ -18,7 +22,8 @@
         <?php foreach ($contents as $content) : ?>
             <div class="panel panel-default">
                 <a href="<?= $this->Url->build(['controller' => 'UserPage',$content->postid]) ?>">
-                <?= $content->posticon . $content->postname . "さんの投稿" ?></a>
+                <span class="usericon"> <?= $content->posticon ?> </span>
+                <?= $content->postname . "さんの投稿" ?></a>
                 <div class="panel-heading"><?= $this->Html->link(__(h($content->title)), ['controller' => 'ContentView', $content->id]) ?></div>
                 <div class="panel-body"><?= nl2br(h($content->body)) ?></div>
 

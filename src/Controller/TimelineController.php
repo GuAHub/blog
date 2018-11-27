@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Symfony\Component\Console\Helper\FormatterHelper;
 
 class TimelineController extends AppController
 {
@@ -48,6 +49,7 @@ class TimelineController extends AppController
         foreach($contents as $content){
             $content->img = parent::display_img($content->img, "90%", "");
             $content->posticon = parent::display_img($content->posticon, "", "40px");
+            $content->created = date("Y年m月d日h時投稿",strtotime($content->created));
         }
         $this->set(compact('contents', 'myname', 'myicon'));
     }

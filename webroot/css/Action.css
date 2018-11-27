@@ -3,6 +3,11 @@ body {
 font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic';
 }
 
+.main{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
 .ContentAction {
     text-align: center;
     border-top:1px solid #e7e7e7;
@@ -52,4 +57,92 @@ font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒ�
     -o-transform: scale(1.1);
     -ms-transform: scale(1.1);
     transform: scale(1.1);
+}
+
+.myicon * {
+    margin: -60px 0 0 30px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff;
+    background-color: #fff;
+}
+
+.myname{
+    font-size: 20px;
+    margin: 0px 0 0 30px;
+}
+.mymail{
+    font-size: 15px;
+    margin: 0px 0 0 30px;
+}
+
+.usericon * {
+    border-radius: 50%;
+    border: 2px solid #fff;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff;
+    background-color: #fff;
+}
+
+.tweet{
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    vertical-align: top;
+    width: 100%;
+}
+
+.pageblock{
+    display: block;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.img{
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    vertical-align: top;
+    width: 100%;
+}
+
+#nav{
+    background-color: rgb(71, 71, 71);
+    padding: 3px;
+}
+
+
+#nav ul{
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+#nav ul li {
+    display: inline;
+    margin-right: 1em;
+}
+
+
+#nav ul li a {
+    font-family: "Trebuchet MS", sans-serif;
+    text-decoration: none;
+    color: #fff;
+}
+
+
+#nav ul li a:hover{
+    border-bottom: dotted 1px #fff;
 }
