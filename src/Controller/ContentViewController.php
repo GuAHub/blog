@@ -28,4 +28,9 @@ class ContentViewController extends AppController
 
         $this->set(compact('content', 'img','aciton','Authid','username','usericon'));
     }
+
+    public function delete($id=Null)
+    {
+        parent::contentdelete($id);
+    }
 }

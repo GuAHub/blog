@@ -51,6 +51,7 @@ font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ãƒ’ã
     text-align: center;
 }
 
+/*
 .panel-default:hover {
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
@@ -58,7 +59,7 @@ font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ãƒ’ã
     -ms-transform: scale(1.1);
     transform: scale(1.1);
 }
-
+*/
 .myicon * {
     margin: -60px 0 0 30px;
     border-radius: 50%;
@@ -67,6 +68,11 @@ font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ãƒ’ã
     box-sizing: border-box;
     color: #fff;
     background-color: #fff;
+}
+
+.myicon *:hover{
+    border-radius: 10%;
+    border: 3px solid rgb(0, 162, 255);
 }
 
 .myname{
@@ -138,11 +144,12 @@ font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ãƒ’ã
 
 #nav ul li a {
     font-family: "Trebuchet MS", sans-serif;
+    font-size:30%;
     text-decoration: none;
-    color: #fff;
+    color: rgb(231, 231, 231);
 }
 
 
 #nav ul li a:hover{
-    border-bottom: dotted 1px #fff;
+    border-bottom: dotted 1px rgb(231, 231, 231);
 }

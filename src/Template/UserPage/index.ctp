@@ -1,18 +1,26 @@
 <?php $this->extend('../Layout/BlogBootstrap/dashboard'); ?>
 <?= $this->Html->css('Action'); ?>
 
+<?= $this->element('header'); ?>
 
-<div>名前：<?= $user->name ?></div>
-<div><?= $myicon ?></div>
-<ul>
-<li><?= $this->Html->link(__('タイムライン'), ['controller' => 'timeline']) ?></li>
-</ul>
-<div class="contents index large-9 medium-8 columns content">
+<div><?= $myheader ?></div>
+<div class='img'>
+    <div class="myicon"><?= $myicon ?></div>
+    <div class="myname"><?= $user->name ?></div>
+    <div class="mymail"><?= $user->email ?></div>
+
+    <div id="nav">
+        <ul>
+            <li><?= $this->Html->link(__('タイムライン'), ['controller' => 'timeline']) ?></li>
+        </ul>
+    </div>
+    <div class="contents index large-9 medium-8 columns content">
 
         <?php foreach ($contents as $content) : ?>
             <div class="panel panel-default">
                 <div class="panel-heading"><?= $this->Html->link(__(h($content->title)), ['controller' => 'ContentView', $content->id]) ?></div>
                 <div class="panel-body"><?= nl2br(h($content->body)) ?></div>
+                //
                 <div class="panelimg"><?= $content->icon ?></div>
                 <div><?= $content->img ?></div>
                 <div><?= $content->created ?></div>

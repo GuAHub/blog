@@ -44,8 +44,11 @@ class UserPageController extends AppController
             $content->img = parent::display_img($content->img, "90%", "90%");
         }
 
-        $myicon = parent::display_img($user->icon, "50%", "50%");
-        $this->set(compact('user', 'myicon', 'contents'));
+        $myicon = parent::display_img($user->icon, "20%", "20%");
+        $myheader = parent::display_img($user->header, "100%", "");
+        $mybackicon = parent::display_img($user->backicon, "50%", "");
+
+        $this->set(compact('user', 'myicon','myheader','mybackicon', 'contents'));
     }
 
 }

@@ -45,22 +45,7 @@ class ContentEditController extends AppController
 
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $content = $this->Contents->get($id);
-
-        $userid = $this->Auth->user('id');
-        if ($this->Auth->user('id') <> $content->userid) {
-            $this->Flash->success(__("このページにはアクセスできません。"));
-            return $this->redirect(['controller' => 'timeline']);
-        }
-
-        if ($this->Contents->delete($content)) {
-            $this->Flash->success(__('削除に成功しました。'));
-        } else {
-            $this->Flash->error(__('削除に失敗しました。もう一度実行してください。'));
-        }
-
-        return $this->redirect(['controller' => 'timeline']);
+        parent::contentdelete($id);
     }
 
 }
